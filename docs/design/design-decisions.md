@@ -18,8 +18,10 @@
 - Directly supported by Battery-Emulator with known pin mapping (`hw_devkit.h`)
 - Cheap and widely available
 - Sufficient SPI, GPIO, and CAN peripherals for our needs
+- Spare GPIO available for custom additions (digipot control, relays, sensors)
 - Onboard 3.3V regulator powers the MCP2518FD and transceiver
 - WiFi for Battery-Emulator web interface
+- Full customisation potential — we can extend Battery-Emulator or write our own firmware later
 
 ## 3. MCP2518FD breakout with onboard transceiver
 
