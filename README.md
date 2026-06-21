@@ -51,7 +51,7 @@ graph LR
 - [System Overview](docs/hardware/system-overview.md) — Mermaid wiring diagram with colour-coded subsystems
 
 ### Design
-_(coming soon)_
+- [Design Decisions](docs/design/design-decisions.md) — Key choices and rationale
 
 ### Firmware
 _(coming soon)_
