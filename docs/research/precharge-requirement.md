@@ -48,16 +48,33 @@ Pins **16** and **22** on Slot C must be connected (pilot line loop). Without th
 
 > Note: Disconnecting pilot line while contactors are already closed only raises HVIL warning but does NOT open contactors. To emergency-stop, remove 12V from T30C (pin 5) instead.
 
+## HV Connector
+
+![HV connector description](https://github.com/user-attachments/assets/bea70acd-e8af-4952-a188-0b9aba549d59)
+
+The **AC Charger** port is wired in parallel to the **motor inverter** port. The DC-charging port has its own contactors.
+
+**Cable part numbers for inverter connector:** `1EA971015T`, `1EA971015AA` or `1EA973732X`
+
+| Cable | Cross-section |
+|-------|---------------|
+| DC charge port | 70 or 95 mm² |
+| Motor inverter | 35 or 50 mm² |
+| AC charger / A/C / PTC | 6 mm² |
+
+For initial pre-charge testing (minimal current), ring terminals or direct bolt connection to HV studs may work without the full connector.
+
 ## Hardware Needed
 
-- HV boost converter (e.g. HIA4V1) capable of outputting pack voltage (~370V)
-- Precharge relay (controlled by Battery-Emulator)
+- HV boost converter (DC-DC 12V → 80–650V) — ordered
+- X9C503S digital potentiometer — ordered
+- Precharge relay (controlled by Battery-Emulator, GPIO 17)
 - HV wiring to motor inverter or AC charger port
 - DC circuit breakers for safety
+- Emergency shutdown button (nice-to-have)
 
 ## Open Questions
 
-- [ ] Source HIA4V1 or equivalent boost converter
-- [ ] HV cable sizing (35–50mm² for inverter port, 6mm² for AC charger port)
+- [ ] HV connector: source `1EA971015T` or fabricate with ring terminals for initial testing
 - [ ] Emergency shutdown button design
-- [ ] Confirm HIA4V1 controllability from Battery-Emulator relay output
+- [ ] Confirm boost converter resistance range matches X9C503S (50kΩ — confirmed from listing)

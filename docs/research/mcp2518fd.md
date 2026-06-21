@@ -3,6 +3,9 @@
 ## Selected Hardware
 
 **MCP2518FD breakout board (complete with onboard CAN FD transceiver):**
+
+![MCP2518FD board](https://github.com/user-attachments/assets/2eb7e828-4838-4b95-b8d4-83862c618f44)
+
 - 40mm x 20mm x 12mm PCB
 - 4x M2 mounting holes
 - Handles both CAN FD and CAN 2.0B

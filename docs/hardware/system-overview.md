@@ -92,3 +92,25 @@ graph TD
 | TP2 | SPI bus | GPIO 32 (MOSI), 35 (MISO), 33 (SCK) |
 | TP3 | HV bus | Boost converter output / relay output |
 | TP4 | Classic CAN | SN65HVD230 H/L (when inverter connected) |
+
+## Startup & Contactor Close Sequence
+
+```mermaid
+sequenceDiagram
+    participant ESP as ESP32 / Battery-Emulator
+    participant BMS as MEB BMS
+    participant BOOST as Boost Converter
+
+    ESP->>BMS: Apply 12V (Pin 3 + Pin 5)
+    ESP->>BMS: Start CAN FD messages (all intervals)
+    BMS-->>ESP: BMS_20: Mode=7 (Init)
+    BMS-->>ESP: BMS_20: Mode=0 (Standby), reports pack voltage
+    ESP->>BOOST: Set digipot → target voltage
+    ESP->>BOOST: Close precharge relay
+    BOOST->>BMS: ~370V on HV terminals
+    BMS-->>ESP: BMS_20: intermediate voltage rising
+    Note over ESP,BMS: Delta < 20V
+    ESP->>BMS: HVK_01: target=AC_CHARGING
+    BMS-->>ESP: BMS_20: Mode=1 (HV Active)
+    ESP->>BOOST: Open precharge relay
+```

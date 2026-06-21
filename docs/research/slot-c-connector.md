@@ -10,6 +10,10 @@ The Slot C connector (data/low voltage interface to the MEB battery) is a standa
 - **Pitch:** 2.54mm
 - **Standard:** Generic dupont/header compatible
 
+## Reference
+
+![Slot C wiring](https://github.com/dalathegreat/Battery-Emulator/assets/166173233/36f68cae-005d-40f2-ab2d-bfe0b73af91b)
+
 ## Pinout
 
 | Pin | Signal | Notes |
