@@ -6,7 +6,7 @@ Inspired by [Battery-Emulator](https://github.com/dalathegreat/Battery-Emulator/
 
 ## Why MEB?
 
-- 82 kWh usable capacity from a single pack (~€3–5k secondhand)
+- 82 kWh usable capacity from a single pack
 - 96S NMC chemistry, ~370V nominal
 - Well-documented CAN FD protocol (thanks to the Battery-Emulator community)
 - Standard 2.54mm dupont connector for data/LV — no proprietary harness needed
