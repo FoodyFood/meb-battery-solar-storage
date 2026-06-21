@@ -1,4 +1,4 @@
-# Solar MEB Battery
+# MEB Battery Solar Storage
 
 Second-life integration of Volkswagen MEB battery packs (ID.3/ID.4/ID.5/ID.Buzz) for solar/home energy storage.
 
