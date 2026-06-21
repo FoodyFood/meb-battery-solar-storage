@@ -10,6 +10,9 @@ Inspired by [Battery-Emulator](https://github.com/dalathegreat/Battery-Emulator/
 - 96S NMC chemistry, ~370V nominal
 - Well-documented CAN FD protocol (thanks to the Battery-Emulator community)
 - Standard 2.54mm dupont connector for data/LV — no proprietary harness needed
+- Quirks (external pre-charge, CAN FD requirement) deter casual buyers — making packs cheaper on the secondhand market
+
+Most EV batteries have internal pre-charge resistors — you apply 12V, send the right CAN messages, and contactors close. MEB packs don't. They require actual pack-level voltage (~370V) on the HV terminals before the BMS will engage. This scares off a lot of the secondhand market, but it's a solvable problem with a boost converter and the right control logic. This project documents exactly how to do it.
 
 ## System Architecture
 
