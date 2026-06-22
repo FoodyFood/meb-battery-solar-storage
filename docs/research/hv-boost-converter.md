@@ -2,9 +2,30 @@
 
 ## Hardware
 
-- **Boost converter:** DC-DC 12V/24V input → 80–650V output, linear adjustable
+- **Boost converter:** ~~DC-DC 12V/24V input → 80–650V output, linear adjustable~~ **ISSUE: likely not isolated. Need isolated boost converter.**
 - **Digital potentiometer:** X9C503S (50kΩ, 100 steps, 3-wire interface)
 - **Control:** ESP32 GPIO → X9C503S → replaces manual trim pot on boost converter
+- **MOV (Metal Oxide Varistor):** On boost converter output to clamp voltage at safe maximum (~420V) in case of control failure
+
+## ⚠️ Outstanding Issue: Isolation
+
+The boost converter we ordered is likely **not isolated**. This is a problem because:
+
+1. MEB uses an isolated HV architecture (HV ground ≠ LV/chassis ground)
+2. The BMS monitors isolation resistance between HV and chassis
+3. A non-isolated converter tying LV ground to HV ground will likely trigger an isolation fault
+4. BMS will refuse to close contactors
+
+**Action:** Source an **isolated** DC-DC boost converter capable of 12V input → ~370V output. The non-isolated unit can be used for bench testing the digipot control, but not with the battery.
+
+## MOV Protection
+
+An MOV rated for ~420V clamping on the boost converter output prevents:
+- Digipot failure driving output to maximum (650V)
+- Transient overshoot during voltage adjustment
+- Damage to battery HV electronics if control logic fails
+
+MOV selection: V420LA series or equivalent, rated for DC operation at the expected voltage.
 
 ## X9C503S Interface
 
