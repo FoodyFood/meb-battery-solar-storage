@@ -17,8 +17,12 @@ graph TD
     SN65["SN65HVD230<br/>(Classic CAN transceiver)"]:::can
 
     %% ===== HV PRE-CHARGE =====
+    FUSE_IN["Fuse<br/>(12V input)"]:::safety
     DIGIPOT["X9C503S<br/>Digital Pot (50kΩ)"]:::precharge
     BOOST["DC-DC Boost Converter<br/>12V → 80–650V"]:::precharge
+    BIAS["Bias Resistors<br/>(4× 140kΩ series)"]:::safety
+    MOV["MOV / TVS<br/>(clamp ~420V)"]:::safety
+    FUSE_OUT["Fuse<br/>(HV output)"]:::safety
     RELAY["Precharge Relay<br/>(GPIO 17)"]:::precharge
 
     %% ===== BATTERY =====
@@ -30,28 +34,32 @@ graph TD
     %% ===== FUTURE =====
     INV["Future Inverter<br/>(TBD)"]:::future
 
-    %% ===== POWER CONNECTIONS (RED) =====
+    %% ===== POWER CONNECTIONS =====
     BENCH -->|"12V"| BUCK
-    BENCH -->|"12V"| BOOST
+    BENCH -->|"12V"| FUSE_IN
     BENCH -->|"12V (Pin 3 + Pin 5)"| SLOTC
     BUCK -->|"5V VIN"| ESP
+    FUSE_IN --> BOOST
 
-    %% ===== SPI BUS (PURPLE) =====
+    %% ===== SPI BUS =====
     ESP -->|"SPI: GPIO 32/33/35/25/34"| MCP
 
-    %% ===== CAN FD BUS (BLUE) =====
+    %% ===== CAN FD BUS =====
     MCP -->|"CAN-H / CAN-L"| SLOTC
 
-    %% ===== CAN CLASSIC (GREEN) =====
+    %% ===== CAN CLASSIC =====
     ESP -->|"GPIO 26/27"| SN65
     SN65 -.->|"CAN-H / CAN-L<br/>(future)"| INV
 
-    %% ===== DIGIPOT CONTROL (ORANGE) =====
+    %% ===== DIGIPOT CONTROL =====
     ESP -->|"3× GPIO<br/>(INC, U/D, CS)"| DIGIPOT
     DIGIPOT -->|"Wiper out"| BOOST
 
-    %% ===== PRECHARGE HV PATH (RED DASHED) =====
-    BOOST -->|"~370V DC"| RELAY
+    %% ===== PRECHARGE HV PATH =====
+    BOOST --> BIAS
+    BOOST --> MOV
+    BOOST --> FUSE_OUT
+    FUSE_OUT --> RELAY
     RELAY -->|"HV out"| HVCONN
 
     %% ===== BATTERY INTERNALS =====
@@ -70,7 +78,38 @@ graph TD
     classDef precharge fill:#f39c12,stroke:#333,color:#fff
     classDef battery fill:#9b59b6,stroke:#333,color:#fff
     classDef future fill:#95a5a6,stroke:#333,color:#fff,stroke-dasharray: 5 5
+    classDef safety fill:#e74c3c,stroke:#333,color:#fff
 ```
+
+## HV Pre-charge Detail
+
+```mermaid
+graph LR
+    IN["12V Supply"]:::power
+    F1["Fuse<br/>(input)"]:::safety
+    BOOST["Boost Converter<br/>12V → ~370V"]:::precharge
+    BIAS["4× 140kΩ<br/>(bias/bleed)"]:::safety
+    MOV["MOV/TVS<br/>(clamp ~420V)"]:::safety
+    F2["Fuse<br/>(output)"]:::safety
+    RELAY["Precharge<br/>Relay"]:::precharge
+    HV["Battery HV<br/>Terminals"]:::battery
+
+    IN --> F1 --> BOOST
+    BOOST --> F2 --> RELAY --> HV
+    BOOST --- BIAS
+    BOOST --- MOV
+
+    classDef power fill:#ff6b6b,stroke:#333,color:#fff
+    classDef precharge fill:#f39c12,stroke:#333,color:#fff
+    classDef safety fill:#e74c3c,stroke:#333,color:#fff
+    classDef battery fill:#9b59b6,stroke:#333,color:#fff
+```
+
+**Safety components:**
+- **Input fuse** — protects 12V supply and boost converter internals
+- **Bias resistors** (4× 140kΩ in series across output) — prevents runaway voltage at no-load
+- **MOV/TVS** (clamp ~420V) — caps output in case of digipot failure or control error
+- **Output fuse** — protects relay and wiring if MOV/TVS fails short
 
 ## Colour Key
 
@@ -83,6 +122,7 @@ graph TD
 | 🟠 Orange | Pre-charge HV control |
 | 🟣 Purple | Battery / BMS |
 | ⚪ Grey dashed | Future / TBD |
+| 🔴 Dark Red | Safety (fuses, protection) |
 
 ## DSO Test Points
 
