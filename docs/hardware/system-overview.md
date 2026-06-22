@@ -81,29 +81,11 @@ graph TD
     classDef safety fill:#e74c3c,stroke:#333,color:#fff
 ```
 
-## HV Pre-charge Detail
+## HV Pre-charge Circuit
 
-```mermaid
-graph LR
-    IN["12V Supply"]:::power
-    F1["Fuse<br/>(input)"]:::safety
-    BOOST["Boost Converter<br/>12V → ~370V"]:::precharge
-    BIAS["4× 140kΩ<br/>(bias/bleed)"]:::safety
-    MOV["MOV/TVS<br/>(clamp ~420V)"]:::safety
-    F2["Fuse<br/>(output)"]:::safety
-    RELAY["Precharge<br/>Relay"]:::precharge
-    HV["Battery HV<br/>Terminals"]:::battery
+![HV Pre-charge Circuit](schematics/hv-precharge.svg)
 
-    IN --> F1 --> BOOST
-    BOOST --> F2 --> RELAY --> HV
-    BOOST --- BIAS
-    BOOST --- MOV
-
-    classDef power fill:#ff6b6b,stroke:#333,color:#fff
-    classDef precharge fill:#f39c12,stroke:#333,color:#fff
-    classDef safety fill:#e74c3c,stroke:#333,color:#fff
-    classDef battery fill:#9b59b6,stroke:#333,color:#fff
-```
+*Auto-generated from [schematics/hv-precharge.py](schematics/hv-precharge.py)*
 
 **Safety components:**
 - **Input fuse** — protects 12V supply and boost converter internals
@@ -132,6 +114,12 @@ graph LR
 | TP2 | SPI bus | GPIO 32 (MOSI), 35 (MISO), 33 (SCK) |
 | TP3 | HV bus | Boost converter output / relay output |
 | TP4 | Classic CAN | SN65HVD230 H/L (when inverter connected) |
+
+## CAN FD Bus Connection
+
+![CAN FD Bus](schematics/can-fd-bus.svg)
+
+*Auto-generated from [schematics/can-fd-bus.py](schematics/can-fd-bus.py)*
 
 ## Startup & Contactor Close Sequence
 
