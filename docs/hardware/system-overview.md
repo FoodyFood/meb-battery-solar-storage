@@ -87,8 +87,6 @@ The pre-charge protection circuit safely brings the battery's HV terminals to pa
 
 ![HV Pre-charge Circuit](schematics/hv-precharge.svg)
 
-*Auto-generated from [schematics/hv-precharge.py](schematics/hv-precharge.py)*
-
 **Safety components:**
 - **Input fuse** — protects 12V supply and boost converter internals
 - **Bias resistors** (4× 140kΩ in series across output) — prevents runaway voltage at no-load
@@ -123,15 +121,11 @@ Physical layer wiring between the MCP2518FD breakout board and the MEB battery's
 
 ![CAN FD Bus](schematics/can-fd-bus.svg)
 
-*Auto-generated from [schematics/can-fd-bus.py](schematics/can-fd-bus.py)*
-
 ## Digital Potentiometer Control
 
 The ESP32 drives an X9C503S digital potentiometer via 3 GPIO pins to set the boost converter's output voltage. This replaces the manual trim pot, enabling closed-loop voltage control — the ESP32 reads pack voltage from the BMS over CAN and adjusts the boost output to match before pre-charge.
 
 ![Digipot Control](schematics/digipot-control.svg)
-
-*Auto-generated from [schematics/digipot-control.py](schematics/digipot-control.py)*
 
 ## Startup & Contactor Close Sequence
 
