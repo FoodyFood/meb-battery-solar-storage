@@ -15,8 +15,14 @@ An Arduino-based test harness that emulates the MEB battery's CAN FD responses, 
 
 | Component | Role |
 |-----------|------|
-| Arduino (Uno/Nano/Mega) | Host controller |
+| Arduino Uno | CAN FD host, ADC for HV voltage reading |
 | MCP2518FD breakout | CAN FD interface (same board as main system) |
+
+**Optional (already on hand):**
+
+| Component | Role |
+|-----------|------|
+| ESP8266 | Web UI for simulator control/status (serial link to Arduino) |
 
 Wiring: Arduino SPI → MCP2518FD → CAN-H/CAN-L ↔ ESP32's MCP2518FD
 
