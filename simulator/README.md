@@ -40,6 +40,30 @@ The simulator responds as if it were the MEB BMS:
 3. Report intermediate voltage rising (simulating precharge)
 4. Transition to mode 1 (HV Active) when HVK_01 requests AC_CHARGING and voltage delta is acceptable
 
+## Closed-loop HV Testing
+
+The simulator can also verify the precharge voltage control loop without a real battery:
+
+1. ESP32 sets digipot → boost converter outputs target voltage
+2. Arduino reads actual HV output via resistor divider (e.g. 1.3M + 10k → 130:1 ratio, maps 0-650V to 0-5V ADC)
+3. Arduino reports the measured voltage over CAN FD as the BMS intermediate circuit voltage
+4. Battery-Emulator sees voltage approaching "pack voltage" and requests contactor close
+5. Arduino simulates contactor close (mode transition)
+
+This tests the entire precharge loop end-to-end without a real 400V battery.
+
+## Parametric Testing
+
+With the closed-loop setup, automated test sweeps become possible:
+
+- **Voltage calibration** — step digipot through all 100 positions, record ADC reading at each. Builds the lookup table.
+- **SOC tracking** — simulator reports varying pack voltages, verify ESP32 adjusts boost output to match.
+- **Precharge timing** — measure relay-close to voltage-at-target response curve.
+- **Fault injection** — simulate failed boost (voltage not rising), verify timeout and error handling.
+- **Boundary conditions** — test at min/max voltage, at the 20V delta threshold, at exact crossing.
+
+All automated, repeatable, no real battery required.
+
 ## Status
 
 🚧 **Planned** — waiting on hardware (Arduino + second MCP2518FD board).
