@@ -1,6 +1,7 @@
 """CAN FD Bus Connection Diagram.
 
 Output: docs/hardware/schematics/can-fd-bus.svg
+Compatible with schemdraw 0.23+
 """
 
 import schemdraw
@@ -10,37 +11,28 @@ from pathlib import Path
 OUTPUT = Path(__file__).resolve().parent / "can-fd-bus.svg"
 
 with schemdraw.Drawing(file=str(OUTPUT), show=False) as d:
-    d.config(unit=3)
+    d.config(unit=4)
 
-    # ESP32
-    d += elm.RBox(w=3, h=2).label("ESP32\nDevKitC V1")
-    esp_out = d.elements[-1].E
+    # === CAN-H line (top) ===
+    elm.Dot(open=True).label("MCP2518FD\nH", loc="left")
+    elm.Line().right(5).label("CAN-H", loc="top")
+    canh_mid = d.here
+    elm.Line().right(5)
+    elm.Dot(open=True).label("Slot C\nPin 17", loc="right")
 
-    # SPI bus
-    d += elm.Line().right(1.5).at(esp_out)
-    d += elm.RBox(w=4, h=2).anchor("W").label("MCP2518FD\n(Controller +\nFD Transceiver)")
-    mcp_out = d.elements[-1].E
+    # === CAN-L line (bottom, parallel) ===
+    elm.Dot(open=True).at((0, -3)).label("MCP2518FD\nL", loc="left")
+    elm.Line().right(5).label("CAN-L", loc="bottom")
+    canl_mid = d.here
+    elm.Line().right(5)
+    elm.Dot(open=True).label("Slot C\nPin 11", loc="right")
 
-    # SPI label
-    d += elm.Label().at(esp_out).right(0.75).label("SPI", loc="top")
+    # === 120 ohm termination (MCP2518FD end, onboard) ===
+    elm.Resistor().at(canh_mid).down(3).label("120 ohm\n(onboard)", loc="right")
 
-    # CAN H line
-    d += elm.Line().right(1).at(mcp_out)
-    canh_start = d.here
-    d += elm.Line().right(3).label("CAN-H (Pin 17)", loc="top")
-    canh_end = d.here
-
-    # Slot C
-    d += elm.RBox(w=3, h=2).anchor("W").label("Slot C\n→ BMS")
-
-    # CAN L line (below)
-    d += elm.Line().down(1.5).at(canh_start)
-    canl_start = d.here
-    d += elm.Line().right(3).label("CAN-L (Pin 11)", loc="bottom")
-    canl_end = d.here
-    d += elm.Line().up(1.5)
-
-    # 120Ω termination (on MCP2518FD board)
-    d += elm.Resistor().down().at(canh_start).label("120Ω\n(onboard)", loc="right")
+    # === GND line ===
+    elm.Dot(open=True).at((0, -6)).label("MCP2518FD\nG", loc="left")
+    elm.Line().right(10)
+    elm.Dot(open=True).label("Slot C\nPin 1", loc="right")
 
 print(f"Generated: {OUTPUT}")

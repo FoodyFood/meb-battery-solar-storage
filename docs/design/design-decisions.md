@@ -76,7 +76,7 @@
 - Dupont jumpers allow quick prototyping and easy reconfiguration
 - Can upgrade to proper TE connector later if permanent installation requires it
 
-## 8. Pilot line hardwired (Pin 16 ↔ 22)
+## 8. Pilot line hardwired (Pin 16 <-> 22)
 
 **Decision:** Permanently short pins 16 and 22 on the Slot C connector.
 
@@ -84,3 +84,14 @@
 - BMS requires closed pilot line loop to allow contactor closure
 - No reason to leave it open in our application
 - Emergency stop is achieved by removing 12V from pin 5 (T30C), not by breaking pilot line
+
+## 9. Non-isolated boost converter with shared ground
+
+**Decision:** Use a non-isolated boost converter. HV- shares the same ground reference as the 12V supply.
+
+**Rationale:**
+- The HIA4V1 (used successfully by the Battery-Emulator community) is also non-isolated
+- The precharge voltage is applied between HV+ and HV- (the battery's own terminals)
+- BMS isolation monitoring measures HV-to-chassis resistance, which remains intact because we connect across the battery terminals, not HV-to-chassis
+- Simpler and cheaper than sourcing a truly isolated converter
+- Needs bench verification — if BMS throws an isolation fault, fallback is a dedicated 12V battery for the boost converter
