@@ -77,8 +77,10 @@ docs/
 ├── hardware/    # Wiring diagrams, component specs, pinouts
 ├── research/    # Notes on MEB CAN protocol, BMS behavior
 └── design/      # System architecture, design decisions
-firmware/        # Embedded code
-tools/           # Helper scripts (CAN log parsers, etc.)
+simulator/       # BMS emulator (Arduino + MCP2518FD) for testing without battery
+firmware/        # Embedded code (ESP32 / Battery-Emulator)
+tools/           # Helper scripts (schematic rendering, etc.)
+tests/           # Automated tests
 ```
 
 ## Status
