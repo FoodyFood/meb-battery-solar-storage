@@ -66,6 +66,7 @@ Second-life integration of VW MEB battery packs for solar/home energy storage, w
 ## Schemdraw Rules
 - Use ASCII only in labels (no Unicode: no →, –, ×, Ω, −). Schemdraw's SVG text parser chokes on them.
 - Always use `transparent=False` in Drawing constructor to ensure white background (dark mode compatibility)
+- White background is also injected by `tools/render_schematics.py` via SVG post-processing — always render through that script, not directly
 - Use correct element types for components (DiodeTVS for TVS/MOV, Inductor2 for boost converters, Fuse for fuses, Switch for relays)
 - Never use a Resistor symbol to represent a non-resistor component
 - Use open dots (Dot(open=True)) for external connection terminals/pins
