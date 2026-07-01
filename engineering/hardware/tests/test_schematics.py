@@ -20,7 +20,7 @@ def test_render_schematics():
 
 def test_svg_files_exist():
     """Each .py schematic should have a corresponding .svg."""
-    schematic_scripts = list(ROOT.glob("engineering/hardware/**/schematics/*.py"))
+    schematic_scripts = list(ROOT.glob("engineering/**/schematics/*.py"))
     assert len(schematic_scripts) > 0, "No schematic scripts found"
 
     for script in schematic_scripts:

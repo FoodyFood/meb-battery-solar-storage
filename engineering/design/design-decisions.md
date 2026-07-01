@@ -95,3 +95,15 @@
 - BMS isolation monitoring measures HV-to-chassis resistance, which remains intact because we connect across the battery terminals, not HV-to-chassis
 - Simpler and cheaper than sourcing a truly isolated converter
 - Needs bench verification — if BMS throws an isolation fault, fallback is a dedicated 12V battery for the boost converter
+
+## 10. ESP32 as BMS simulator (not Arduino)
+
+**Decision:** Use a second ESP32-DevKitC V1 + MCP2518FD breakout as the BMS simulator.
+
+**Rationale:**
+- Identical hardware to the main system — no new components to learn or source
+- Same SPI pin assignments, same CAN FD transceiver, same power requirements
+- WiFi built in — enables a web UI for controlling simulation parameters without additional hardware
+- Multiple ADC pins available for HV voltage divider reading
+- More capable than Arduino Uno for timing-critical 10ms CAN FD frames
+- Arduino Uno + ESP8266 combo would have worked but adds complexity and two codebases

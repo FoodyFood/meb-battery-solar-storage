@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def main():
-    scripts = sorted(ROOT.glob("engineering/hardware/**/schematics/*.py"))
+    scripts = sorted(ROOT.glob("engineering/**/schematics/*.py"))
 
     if not scripts:
         print("No schematic scripts found.")
