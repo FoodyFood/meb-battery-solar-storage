@@ -1,13 +1,25 @@
-"""Render all circuit diagrams found in docs/**/schematics/*.py.
+"""Render all circuit diagrams found in engineering/**/schematics/*.py.
 
 Usage: python tools/render_schematics.py
 """
 
+import re
 import subprocess
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def add_white_background(svg_path: Path):
+    """Inject a white background rect into an SVG using its viewBox dimensions."""
+    content = svg_path.read_text()
+    match = re.search(r'viewBox="([^"]+)"', content)
+    if match:
+        x, y, w, h = match.group(1).split()
+        bg = f'<rect x="{x}" y="{y}" width="{w}" height="{h}" fill="white"/>'
+        content = re.sub(r'(<svg[^>]*>)', r'\1' + bg, content, count=1)
+        svg_path.write_text(content)
 
 
 def main():
@@ -25,6 +37,9 @@ def main():
             print(f"FAIL\n    {result.stderr.strip()}")
             errors += 1
         else:
+            svg = script.with_suffix(".svg")
+            if svg.exists():
+                add_white_background(svg)
             print("OK")
 
     print(f"\n{len(scripts)} schematic(s), {errors} error(s).")
