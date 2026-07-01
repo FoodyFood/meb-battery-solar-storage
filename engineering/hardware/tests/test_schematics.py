@@ -4,7 +4,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[3]
 RENDER_SCRIPT = ROOT / "tools" / "render_schematics.py"
 
 
@@ -20,7 +20,7 @@ def test_render_schematics():
 
 def test_svg_files_exist():
     """Each .py schematic should have a corresponding .svg."""
-    schematic_scripts = list(ROOT.glob("hardware/**/schematics/*.py"))
+    schematic_scripts = list(ROOT.glob("engineering/hardware/**/schematics/*.py"))
     assert len(schematic_scripts) > 0, "No schematic scripts found"
 
     for script in schematic_scripts:

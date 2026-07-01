@@ -3,7 +3,7 @@ name: Render Schematics
 on:
   push:
     paths:
-      - 'hardware/**/schematics/*.py'
+      - 'engineering/hardware/**/schematics/*.py'
       - 'tools/render_schematics.py'
       - 'tools/requirements.txt'
 
@@ -30,6 +30,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add hardware/**/schematics/*.svg
+          git add engineering/hardware/**/schematics/*.svg
           git diff --cached --quiet || git commit -m "Auto-render schematic SVGs"
           git push

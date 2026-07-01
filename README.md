@@ -49,13 +49,14 @@ See [ROADMAP.md](ROADMAP.md) for the full phase breakdown from POC to commercial
 
 ```
 product/             # Commercial product — roadmap, certification, commissioning
-hardware/            # Wiring diagrams, schematics, component specs
 research/            # MEB CAN protocol, BMS behaviour, component research
-design/              # Technical design decisions
-simulator/           # Arduino BMS emulator for testing without a real battery
-firmware/            # ESP32 / Battery-Emulator code
+engineering/
+├── hardware/        # Wiring diagrams, schematics, component specs
+├── design/          # Technical design decisions
+├── firmware/        # ESP32 / Battery-Emulator code
+├── simulator/       # Arduino BMS emulator for testing without a real battery
+└── tests/           # Automated tests
 tools/               # Dev utilities (schematic rendering)
-tests/               # Automated tests
 ```
 
 ## Hardware Stack
@@ -76,7 +77,7 @@ tests/               # Automated tests
 - [product/](product/) — Certification, commissioning, battery assessment
 
 ### Hardware
-- [System Overview](hardware/system-overview.md) — Wiring diagrams and schematics
+- [System Overview](engineering/hardware/system-overview.md) — Wiring diagrams and schematics
 
 ### Research
 - [Slot C Connector](research/slot-c-connector.md) — Data/LV connector (2x11 dupont)
@@ -86,10 +87,10 @@ tests/               # Automated tests
 - [HV Boost Converter](research/hv-boost-converter.md) — Pre-charge voltage source (digitally controlled)
 
 ### Design
-- [Design Decisions](design/design-decisions.md) — Key choices and rationale
+- [Design Decisions](engineering/design/design-decisions.md) — Key choices and rationale
 
 ### Simulator
-- [BMS Simulator](simulator/README.md) — Arduino test harness for pre-battery testing
+- [BMS Simulator](engineering/simulator/README.md) — Arduino test harness for pre-battery testing
 
 ## Status
 
