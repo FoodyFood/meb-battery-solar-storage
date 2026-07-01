@@ -1,4 +1,4 @@
-# Product Roadmap
+# Roadmap
 
 From proof-of-concept to a commercially installable second-life MEB battery storage solution.
 
@@ -53,17 +53,19 @@ flowchart TD
 ## Phase Summary
 
 ### Phase 1 — Proof of Concept
-Validate the core technology: CAN FD communication, precharge sequence, and contactor control with a real MEB battery. All work done with dev boards and bench equipment.
+Validate the core technology with dev boards and bench equipment. Ends with a real MEB battery closing contactors under software control with closed-loop precharge.
 
 ### Phase 2 — Pilot System
-Integrate an inverter and validate a full charge/discharge cycle. Develop safety testing procedures and a commissioning checklist. This phase produces the first working home storage system.
+Integrate an inverter and validate a full charge/discharge cycle. Develop safety testing procedures and a commissioning checklist. Produces the first working home storage system.
 
 ### Phase 3 — Integration
-Replace dev boards with a custom PCB. Design an enclosure suitable for real-world installation. Build a commissioning tool for field use and a battery health assessment procedure for evaluating secondhand packs before purchase.
+Replace dev boards with a custom PCB. Design an enclosure for real-world installation. Build a commissioning tool for field use and a battery health assessment procedure for evaluating secondhand packs.
 
 ### Phase 4 — Product
 Achieve regulatory compliance, produce installation documentation, and deliver the first customer installation. Add remote monitoring for fleet management as the install base grows.
 
 ## Current Status
 
-We are in **Phase 1**, with hardware on order and the CAN FD protocol fully documented.
+🚧 **Phase 1 in progress** — hardware on order, CAN FD protocol fully documented.
+
+See [product/roadmap.md](product/roadmap.md) for detailed milestone tracking.

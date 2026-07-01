@@ -6,8 +6,7 @@ Shared scripts and utilities.
 
 ```bash
 python -m venv .venv
-.venv\Scripts\activate        # Windows
-source .venv/bin/activate     # Linux/Mac
+source .venv/bin/activate     # Linux/WSL
 pip install -r tools/requirements.txt
 ```
 
@@ -15,7 +14,7 @@ pip install -r tools/requirements.txt
 
 | Script | Purpose |
 |--------|---------|
-| `render_schematics.py` | Discovers and renders all `docs/**/schematics/*.py` → SVG |
+| `render_schematics.py` | Discovers and renders all `hardware/**/schematics/*.py` → SVG |
 
 ## Rendering Schematics
 
@@ -23,13 +22,11 @@ pip install -r tools/requirements.txt
 python tools/render_schematics.py
 ```
 
-This finds all `.py` files in any `schematics/` folder under `docs/` and runs them. Each script outputs an SVG alongside itself.
-
 A GitHub Actions workflow auto-renders and commits SVGs when schematic source files change.
 
 ## Adding a New Schematic
 
-1. Create a `.py` file in the relevant `docs/<section>/schematics/` folder
-2. Script outputs SVG to the same directory (use `Path(__file__).resolve().parent`)
+1. Create a `.py` file in `hardware/schematics/` (or a subsection)
+2. Output SVG to the same directory using `Path(__file__).resolve().parent`
 3. Reference it in markdown: `![description](schematics/<name>.svg)`
 4. Push — the workflow renders and commits the SVG automatically

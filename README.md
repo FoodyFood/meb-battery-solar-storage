@@ -41,24 +41,22 @@ graph LR
     classDef future fill:#95a5a6,stroke:#333,color:#fff,stroke-dasharray: 5 5
 ```
 
-## Table of Contents
+## Roadmap
 
-### Research
-- [Slot C Connector](docs/research/slot-c-connector.md) — Data/LV connector (2x11 dupont)
-- [Pre-charge Requirement](docs/research/precharge-requirement.md) — Contactor enable conditions
-- [MCP2518FD](docs/research/mcp2518fd.md) — SPI to CAN FD controller
-- [MEB CAN Protocol](docs/research/meb-can-protocol.md) — Full protocol reference (IDs, timing, CRC, startup sequence)
-- [HV Boost Converter](docs/research/hv-boost-converter.md) — Pre-charge voltage source (digitally controlled)
+See [ROADMAP.md](ROADMAP.md) for the full phase breakdown from POC to commercial product.
 
-### Hardware
-- [System Overview](docs/hardware/system-overview.md) — Mermaid wiring diagram with colour-coded subsystems
+## Repository Structure
 
-### Design
-- [Design Decisions](docs/design/design-decisions.md) — Key choices and rationale
-- [Roadmap](docs/design/roadmap.md) — POC to product phases
-
-### Firmware
-_(coming soon)_
+```
+product/             # Commercial product — roadmap, certification, commissioning
+hardware/            # Wiring diagrams, schematics, component specs
+research/            # MEB CAN protocol, BMS behaviour, component research
+design/              # Technical design decisions
+simulator/           # Arduino BMS emulator for testing without a real battery
+firmware/            # ESP32 / Battery-Emulator code
+tools/               # Dev utilities (schematic rendering)
+tests/               # Automated tests
+```
 
 ## Hardware Stack
 
@@ -71,18 +69,27 @@ _(coming soon)_
 | X9C503S digital pot | Digitally controls boost converter output voltage |
 | 12V bench supply | Powers BMS, ESP32, boost converter |
 
-## Project Structure
+## Documentation
 
-```
-docs/
-├── hardware/    # Wiring diagrams, component specs, pinouts
-├── research/    # Notes on MEB CAN protocol, BMS behavior
-└── design/      # System architecture, design decisions
-simulator/       # BMS emulator (Arduino + MCP2518FD) for testing without battery
-firmware/        # Embedded code (ESP32 / Battery-Emulator)
-tools/           # Helper scripts (schematic rendering, etc.)
-tests/           # Automated tests
-```
+### Product
+- [Roadmap](ROADMAP.md) — Phase breakdown from POC to commercial installation
+- [product/](product/) — Certification, commissioning, battery assessment
+
+### Hardware
+- [System Overview](hardware/system-overview.md) — Wiring diagrams and schematics
+
+### Research
+- [Slot C Connector](research/slot-c-connector.md) — Data/LV connector (2x11 dupont)
+- [Pre-charge Requirement](research/precharge-requirement.md) — Contactor enable conditions
+- [MCP2518FD](research/mcp2518fd.md) — SPI to CAN FD controller
+- [MEB CAN Protocol](research/meb-can-protocol.md) — Full protocol reference (IDs, timing, CRC, startup sequence)
+- [HV Boost Converter](research/hv-boost-converter.md) — Pre-charge voltage source (digitally controlled)
+
+### Design
+- [Design Decisions](design/design-decisions.md) — Key choices and rationale
+
+### Simulator
+- [BMS Simulator](simulator/README.md) — Arduino test harness for pre-battery testing
 
 ## Status
 
@@ -92,7 +99,8 @@ tests/           # Automated tests
 - [x] Slot C pinout mapped
 - [x] Pre-charge requirement understood (external HV source needed)
 - [x] Hardware selected and ordered
-- [x] Wiring diagram created
+- [x] Wiring diagram and schematics created
+- [x] BMS simulator planned
 - [ ] Flash Battery-Emulator onto ESP32
 - [ ] First power-on with battery
 - [ ] Contactor close achieved
