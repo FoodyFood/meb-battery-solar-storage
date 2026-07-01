@@ -14,15 +14,16 @@ flowchart TD
 
     subgraph PILOT["Phase 2 — Pilot System"]
         PI1["Inverter selected\nand integrated"]
-        PI2["Charge / discharge\ncycle validated"]
-        PI3["Safety testing\n(isolation, fault injection)"]
-        PI4["Commissioning procedure\ndocumented"]
-        PI1 --> PI2 --> PI3 --> PI4
+        PI2["In-pack heater\nintegrated and validated"]
+        PI3["Charge / discharge\ncycle validated"]
+        PI4["Safety testing\n(isolation, fault injection,\nfire suppression)"]
+        PI5["Commissioning procedure\ndocumented"]
+        PI1 --> PI2 --> PI3 --> PI4 --> PI5
     end
 
     subgraph INTEGRATION["Phase 3 — Integration"]
         I1["Custom PCB design\n(replaces dev boards)"]
-        I2["Enclosure design\n(IP rating, HV safety)"]
+        I2["Enclosure design\n(IP rating, HV safety,\nfire suppression mount)"]
         I3["Commissioning tool\n(web UI / app)"]
         I4["Battery health\nassessment procedure"]
         I1 --> I2
@@ -45,7 +46,7 @@ flowchart TD
     classDef product fill:#9b59b6,stroke:#333,color:#fff
 
     class P1,P2,P3,P4 poc
-    class PI1,PI2,PI3,PI4 pilot
+    class PI1,PI2,PI3,PI4,PI5 pilot
     class I1,I2,I3,I4 integration
     class PR1,PR2,PR3,PR4 product
 ```
@@ -56,10 +57,10 @@ flowchart TD
 Validate the core technology with dev boards and bench equipment. Ends with a real MEB battery closing contactors under software control with closed-loop precharge.
 
 ### Phase 2 — Pilot System
-Integrate an inverter and validate a full charge/discharge cycle. Develop safety testing procedures and a commissioning checklist. Produces the first working home storage system.
+Integrate an inverter and validate a full charge/discharge cycle. Integrate and validate the in-pack heater for cold-weather charge efficiency. Safety testing includes isolation, fault injection, and fire suppression system validation. Produces the first working home storage system.
 
 ### Phase 3 — Integration
-Replace dev boards with a custom PCB. Design an enclosure for real-world installation. Build a commissioning tool for field use and a battery health assessment procedure for evaluating secondhand packs.
+Replace dev boards with a custom PCB. Design an enclosure for real-world installation, including fire suppression system mounting and activation wiring. Build a commissioning tool for field use and a battery health assessment procedure for evaluating secondhand packs.
 
 ### Phase 4 — Product
 Achieve regulatory compliance, produce installation documentation, and deliver the first customer installation. Add remote monitoring for fleet management as the install base grows.

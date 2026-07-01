@@ -24,8 +24,9 @@ Detailed milestone tracking. For the high-level overview see [ROADMAP.md](../ROA
 |-----------|--------|
 | Inverter selected | ⬜ Pending |
 | Inverter integrated with Battery-Emulator | ⬜ Pending |
+| In-pack heater integrated and validated | ⬜ Pending |
 | Charge / discharge cycle validated | ⬜ Pending |
-| Safety testing (isolation, fault injection) | ⬜ Pending |
+| Safety testing (isolation, fault injection, fire suppression) | ⬜ Pending |
 | Commissioning procedure documented | ⬜ Pending |
 
 ## Phase 3 — Integration
@@ -33,7 +34,7 @@ Detailed milestone tracking. For the high-level overview see [ROADMAP.md](../ROA
 | Milestone | Status |
 |-----------|--------|
 | Custom PCB design | ⬜ Pending |
-| Enclosure design (IP rating, HV safety) | ⬜ Pending |
+| Enclosure design (IP rating, HV safety, fire suppression mount) | ⬜ Pending |
 | Commissioning tool (web UI / app) | ⬜ Pending |
 | Battery health assessment procedure | ⬜ Pending |
 
