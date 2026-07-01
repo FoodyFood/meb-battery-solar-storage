@@ -12,14 +12,14 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def add_white_background(svg_path: Path):
-    """Inject a white background rect into an SVG using its viewBox dimensions."""
+    """Inject a white background into an SVG via style on the root element."""
     content = svg_path.read_text()
-    match = re.search(r'viewBox="([^"]+)"', content)
-    if match:
-        x, y, w, h = match.group(1).split()
-        bg = f'<rect x="{x}" y="{y}" width="{w}" height="{h}" fill="white"/>'
-        content = re.sub(r'(<svg[^>]*>)', r'\1' + bg, content, count=1)
-        svg_path.write_text(content)
+    # Add background-color to the root svg element's style
+    if 'style=' in content.split('>')[0]:
+        content = re.sub(r'(<svg[^>]*style=")', r'\1background-color:white;', content, count=1)
+    else:
+        content = re.sub(r'(<svg)([^>]*>)', r'\1 style="background-color:white;"\2', content, count=1)
+    svg_path.write_text(content)
 
 
 def main():
