@@ -5,7 +5,7 @@ From proof-of-concept to a commercially installable second-life MEB battery stor
 ```mermaid
 flowchart TD
     subgraph POC["Phase 1 — Proof of Concept"]
-        P1["Simulator build\n(Arduino + MCP2518FD)"]
+        P1["Simulator build\n(ESP32 + MCP2518FD)"]
         P2["Battery-Emulator on ESP32\nfirst power-on"]
         P3["Contactor close achieved\nwith real battery"]
         P4["Digipot closed-loop\nprecharge validated"]

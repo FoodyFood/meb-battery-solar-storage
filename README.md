@@ -54,8 +54,7 @@ engineering/
 ├── hardware/        # Wiring diagrams, schematics, component specs
 ├── design/          # Technical design decisions
 ├── firmware/        # ESP32 / Battery-Emulator code
-├── simulator/       # Arduino BMS emulator for testing without a real battery
-└── tests/           # Automated tests
+└── simulator/       # ESP32 BMS emulator for testing without a real battery
 tools/               # Dev utilities (schematic rendering)
 ```
 
@@ -90,7 +89,7 @@ tools/               # Dev utilities (schematic rendering)
 - [Design Decisions](engineering/design/design-decisions.md) — Key choices and rationale
 
 ### Simulator
-- [BMS Simulator](engineering/simulator/README.md) — Arduino test harness for pre-battery testing
+- [BMS Simulator](engineering/simulator/README.md) — ESP32 test harness for pre-battery testing
 
 ## Status
 

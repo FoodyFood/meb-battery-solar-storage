@@ -13,7 +13,7 @@ Detailed milestone tracking. For the high-level overview see [ROADMAP.md](../ROA
 | Wiring diagrams and schematics created | ✅ Done |
 | BMS simulator planned | ✅ Done |
 | Flash Battery-Emulator onto ESP32 | ⬜ Pending |
-| Simulator build (Arduino + MCP2518FD) | ⬜ Pending |
+| Simulator build (ESP32 + MCP2518FD) | ⬜ Pending |
 | First power-on with battery | ⬜ Pending |
 | Contactor close achieved | ⬜ Pending |
 | Digipot closed-loop precharge validated | ⬜ Pending |
