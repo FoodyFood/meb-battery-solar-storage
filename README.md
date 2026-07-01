@@ -55,6 +55,7 @@ graph LR
 
 ### Design
 - [Design Decisions](docs/design/design-decisions.md) — Key choices and rationale
+- [Roadmap](docs/design/roadmap.md) — POC to product phases
 
 ### Firmware
 _(coming soon)_
