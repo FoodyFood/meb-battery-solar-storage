@@ -12,7 +12,7 @@ from pathlib import Path
 
 OUTPUT = Path(__file__).resolve().parent / "hv-precharge.svg"
 
-with schemdraw.Drawing(file=str(OUTPUT), show=False) as d:
+with schemdraw.Drawing(file=str(OUTPUT), show=False, transparent=False) as d:
     d.config(unit=3.5)
 
     # Input supply with ground

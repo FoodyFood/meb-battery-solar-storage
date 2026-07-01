@@ -13,7 +13,7 @@ from pathlib import Path
 
 OUTPUT = Path(__file__).resolve().parent / "digipot-control.svg"
 
-with schemdraw.Drawing(file=str(OUTPUT), show=False) as d:
+with schemdraw.Drawing(file=str(OUTPUT), show=False, transparent=False) as d:
     d.config(unit=4)
 
     # X9C503S IC

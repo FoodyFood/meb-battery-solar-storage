@@ -10,7 +10,7 @@ from pathlib import Path
 
 OUTPUT = Path(__file__).resolve().parent / "can-fd-bus.svg"
 
-with schemdraw.Drawing(file=str(OUTPUT), show=False) as d:
+with schemdraw.Drawing(file=str(OUTPUT), show=False, transparent=False) as d:
     d.config(unit=4)
 
     # === CAN-H line (top) ===

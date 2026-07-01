@@ -12,7 +12,7 @@ from pathlib import Path
 
 OUTPUT = Path(__file__).resolve().parent / "simulator-bus.svg"
 
-with schemdraw.Drawing(file=str(OUTPUT), show=False) as d:
+with schemdraw.Drawing(file=str(OUTPUT), show=False, transparent=False) as d:
     d.config(unit=4)
 
     # Main ESP32 (left)
